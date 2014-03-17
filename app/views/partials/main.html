@@ -4,15 +4,17 @@
 <form role="form">
   <div class="form-group">
     <label for="exampleInputTitle">Auftrag</label>
-    <input ng-model="title" type="text" class="form-control" id="exampleInputTitle" placeholder="Bitte geben Sie die Aufgabe oder den Auftrag ein">
+    <input ng-change="search()" ng-model="data.title" type="text" class="form-control" id="exampleInputTitle" placeholder="Bitte geben Sie die Aufgabe oder den Auftrag ein">
   </div>
   <div class="form-group">
     <label for="exampleInputDescription">Beschreibung</label>
-    <textarea ng-model="description" type="password" class="form-control" id="exampleInputDescription"></textarea>
+    <textarea ng-change="search()" ng-model="data.description" type="password" class="form-control" id="exampleInputDescription"></textarea>
   </div>
   <a ng-click="save()" class="btn btn-default">Submit</a>
 </form>
         <p></p>
 <div class="footer">
-  <p>♥ from the Yeoman team</p>
+    <ul ng-repeat="node in searchResult">
+        <li><strong>{{ node.title }}</strong>, {{ node.description }}</li>
+    </ul>
 </div>
