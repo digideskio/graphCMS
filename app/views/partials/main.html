@@ -1,20 +1,23 @@
 <div ng-include="'partials/navbar'"></div>
 
 <h2>Neuer Eintrag</h2>
-<form role="form">
+<form role="form" name="entryform">
   <div class="form-group">
     <label for="exampleInputTitle">Auftrag</label>
-    <input ng-change="search()" ng-model="data.title" type="text" class="form-control" id="exampleInputTitle" placeholder="Bitte geben Sie die Aufgabe oder den Auftrag ein">
+    <input name="title" ng-change="search()" ng-model="data.title" type="text" class="form-control" id="exampleInputTitle" placeholder="Bitte geben Sie die Aufgabe oder den Auftrag ein">
   </div>
   <div class="form-group">
     <label for="exampleInputDescription">Beschreibung</label>
     <textarea ng-change="search()" ng-model="data.description" type="password" class="form-control" id="exampleInputDescription"></textarea>
   </div>
   <a ng-click="save()" class="btn btn-default">Submit</a>
+
+    <div ng-repeat="node in searchResult">
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" value="{{ node._id }}" ng-model='searchResult[$index].relations' />
+                <strong>{{ node.title }}</strong>, {{ node.description }}
+            </label>
+        </div>
+    </div>
 </form>
-        <p></p>
-<div class="footer">
-    <ul ng-repeat="node in searchResult">
-        <li><strong>{{ node.title }}</strong>, {{ node.description }}</li>
-    </ul>
-</div>
